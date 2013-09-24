@@ -1,7 +1,7 @@
 inspired_landing
 ================================
 
-A Python flask application thta stores an email_address in a single table in a database. There is not much to this, so it is very basic. 
+A Python flask application for the Inspired landing email sign-up that stores an email_address in a single table in a database. There is not much to this, so it is very basic.
 
 
 Diretory Structure

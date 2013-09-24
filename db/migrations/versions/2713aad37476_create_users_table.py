@@ -21,6 +21,7 @@ def upgrade():
         Column('user_id', Integer(unsigned=True), primary_key=True, nullable=False),
         Column('email_address', String(length=255), unique=True, index=True, nullable=False),
         Column('created_at', DateTime, nullable=False),
+        Column('updated_at', DateTime, nullable=False),
         mysql_engine='InnoDB',
         mysql_charset='utf8'
     )

@@ -4,14 +4,14 @@
 """
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../../')
-from lib.database import db_session
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../../lib/')
+from database import db_session
 ## need to import all child models for now
-from lib.users.models import User
+from users.models import User
 from sqlalchemy.orm.exc import NoResultFound
 
 from flask import Blueprint, jsonify, request, abort, make_response
-from lib.helpers.serializers import JSONEncoder
+from helpers.serializers import JSONEncoder
 import json
 
 users = Blueprint('users', __name__)
@@ -45,7 +45,6 @@ def post():
     :statuscode 400: Bad Request
     :statuscode 409: Conflict
     """
-    print request
     if not request.json or 'email_address' not in request.json:
         abort(400)
     try:

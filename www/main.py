@@ -7,17 +7,33 @@ import sys
 import os
 import argparse
 
-#sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../lib')
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../lib')
 sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../conf')
 
-import landing
-import users.views
+from inspired_landing_config import SQLALCHEMY_DATABASE_URI
+
+from database import init_engine, db_session
+
+def create_app(uri):
+    """ dynamically create the app """
+    app = Flask(__name__, static_url_path='', static_folder='./static')
+    app.config['SQLALCHEMY_DATABASE_URI'] = uri
+    init_engine(app.config['SQLALCHEMY_DATABASE_URI'])
+
+    @app.teardown_appcontext
+    def shutdown_session(exception=None):
+        db_session.remove()
+
+    import landing
+    from users_views.views import users
+    app.register_blueprint(landing.app)
+    app.register_blueprint(users, url_prefix="/users")
+    return app
+
 
 def bootstrap(**kwargs):
     """bootstraps the application. can handle setup here"""
-    app = Flask(__name__, static_url_path='', static_folder='./static')
-    app.register_blueprint(landing.app)
-    app.register_blueprint(users.views.users, url_prefix="/users")
+    app = create_app(SQLALCHEMY_DATABASE_URI)
     app.debug = True
     app.run(host=kwargs['host'], port=kwargs['port'])
 

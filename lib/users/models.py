@@ -2,10 +2,9 @@
 from __future__ import absolute_import
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../../../../lib')
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../lib')
+sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../lib/')
 from database import Base
-from lib.helpers.helpers import BaseExtension
+from helpers.helpers import BaseExtension
 #from inspired.v1.lib.videos.models import Video
 from sqlalchemy import Column, String, DateTime, Table, ForeignKey
 from sqlalchemy.dialects.mysql import INTEGER as Integer
@@ -30,6 +29,7 @@ class User(Base):
     id = Column('user_id', Integer(unsigned=True), primary_key=True)
     email_address = Column(String(255), unique=True, index=True, nullable=False)
     created_at = Column(DateTime(), nullable=False)
+    updated_at = Column(DateTime(), nullable=False)
 
     def __init__(self, email_address):
         self.email_address = email_address

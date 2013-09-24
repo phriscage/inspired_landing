@@ -74,7 +74,7 @@ def init_models():
     """ import all the models. 
     TODO need a more programatic method to do this
     """
-    import inspired.v1.lib.users.models
+    import lib.users.models
     
 def init_db(engine):
     """ initialize the database """

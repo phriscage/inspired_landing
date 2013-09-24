@@ -105,23 +105,20 @@
                     document.getElementsByClassName("email-registration")[0].innerHTML = '<div class="social-share"><a id="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Finspiredapp.tv" target="_blank"></a><a id="twitter" href="https://twitter.com/intent/tweet?text=Just%20signed%20up%20for%20%40inspired_app.%20Lets%20you%20shop%20the%20styles%20from%20the%20hottest%20music%20videos.%20Gain%20exclusive%20access%20here%20www.inspiredapp.tv" target="_blank"></a><a id="email" href="mailto:?subject=This new video fashion app looks inspiring!&amp;body=Hey, what&#39;s up!%0D%0A%0D%0AI found something that&#39;s right up your alley. The Inspired app allows you to keep up with the latest fashion trends in the hottest music videos. It&#39;s free, but exclusive invitations are limited, grab one here: www.inspiredapp.tv"></a></div>';
                 }
                 document.getElementsByClassName("message")[0].innerHTML = "Thank you for your request.</br>Invitations are limited, share with friends to increase your chance for early access.";
-                //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>--------add ajax POST function-----------------------------------------
-                request = $.ajax({
-                  type: "POST",
-                  url: 'http://dev.inspired.com:8000/users',
-                  data: inputValue
-                });
-                request.done(function (response, textStatus, jqXHR){
-                    // log a message to the console
-                    console.log("Hooray, it worked!");
-                });
-                // callback handler that will be called on failure
-                request.fail(function (jqXHR, textStatus, errorThrown){
-                    // log the error to the console
-                    console.error(
-                        "The following error occured: "+
-                        textStatus, errorThrown
-                    );
+                $.ajax({
+                  type: 'POST',
+                  url: '/users/',
+                  data: JSON.stringify({"email_address": inputValue}),
+                  contentType: 'application/json',
+                  success: function (data, status) {
+                    console.log("Success!!");
+                    console.log(data);
+                    console.log(status);
+                  },
+                  error: function (xhr, desc, err) {
+                    <!--console.log(xhr);-->
+                    console.log("Desc: " + desc + "\nErr:" + err);
+                  }
                 });
             }else{
                 if (document.getElementsByName("email-registration-form")[0].placeholder != 'Type Your Email'){
