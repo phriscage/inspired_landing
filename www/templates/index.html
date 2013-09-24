@@ -7,6 +7,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="msvalidate.01" content="806DCA7A2FEEBE5CBEF3AAF84BD94240" />
+		<meta name="google-site-verification" content="7DU72uU9Gm5eRW72lDOqKWTZ_Qid_6hW0ZNQbip9I30" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
         <title>Get Inspired. Now!</title>
@@ -24,13 +25,14 @@
         <meta property="og:site_name" content="Inspired"/>
         <meta property="og:title" content="Inspired">
         <meta property="og:description" content="Shop styles from the hottest music videos. Inspired is the destination to keep up with your favorite celebrity fashion trends." />
-        <meta property="og:image" content="http://inspiredapp.tv/images/icon-196.png" />
+        <meta property="og:image" content="images/icon-196.png" />
+        <meta property="fb:app_id" content="1390058847900474" />
+        <meta property="fb:admins" content="100000399111377" />
 
         <link rel="canonical" href="http://www.inspiredapp.tv/">
         <link rel="publisher" href="https://plus.google.com/102711944033891399361"/>
-        <link rel="shortcut icon" type="image/png" href="http://inspiredapp.tv/images/icon-196.png">
+        <link rel="shortcut icon" type="image/png" href="images/icon-196.png">
         <link rel="stylesheet" type="text/css" href="css/style.css" />
-        <script src="includes/jquery/1.10.2/jquery-1.10.2.min.js"></script>
     </head>
     <body id="page">
         <ul class="cb-slideshow">
@@ -61,7 +63,7 @@
                     <a href="mailto:?subject=Contact Invidio [registration page]" target="_blank">contact@inspiredapp.tv</a>
                 </span>
                 <span class="middle">
-                    <a href="https://twitter.com/#!/direct_messages/create/inspired_app" target="_blank">@inspired_app</a>
+                    <a href="https://twitter.com/inspired_app" target="_blank">@inspired_app</a>
                 </span>
                 <span class="right">
                     <a href="https://twitter.com/home?status=#getinspired" target="_blank">#getinspired</a>
@@ -71,6 +73,7 @@
     </body>
 
     <!-- SCRIPTS -->
+	<script src="includes/jquery/1.10.2/jquery-1.10.2.min.js"></script>
     <script type="text/javascript">
         var isMobile = {
             Android: function() {
@@ -107,7 +110,8 @@
                 document.getElementsByClassName("message")[0].innerHTML = "Thank you for your request.</br>Invitations are limited, share with friends to increase your chance for early access.";
                 $.ajax({
                   type: 'POST',
-                  url: '/users/',
+                  url: 'http://inspiredapp.tv:8001/users/',
+                  crossDomain: true,
                   data: JSON.stringify({"email_address": inputValue}),
                   contentType: 'application/json',
                   success: function (data, status) {
@@ -133,11 +137,12 @@
     </script>
     <!-- Google Analytics -->
     <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-        var pluginUrl = '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
-        _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
-        ga('create', 'UA-45371558-1', 'inspiredapp.tv');
-        ga('send', 'pageview');
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-45371558-1', 'inspiredapp.tv');
+	  ga('send', 'pageview');
     </script>
 </html>
 

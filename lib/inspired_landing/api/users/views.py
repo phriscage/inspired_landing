@@ -4,20 +4,23 @@
 """
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../../lib/')
-from database import db_session
+sys.path.insert(0, os.path.dirname(
+    os.path.realpath(__file__)) + '/../../../../lib')
+from inspired_landing.lib.database import db_session
 ## need to import all child models for now
-from users.models import User
+from inspired_landing.lib.users.models import User
+from inspired_landing.api.util import crossdomain
 from sqlalchemy.orm.exc import NoResultFound
 
 from flask import Blueprint, jsonify, request, abort, make_response
-from helpers.serializers import JSONEncoder
+from inspired_landing.lib.helpers.serializers import JSONEncoder
 import json
 
 users = Blueprint('users', __name__)
 
 #create routes
-@users.route('/', methods=['POST'])
+@users.route('/', methods=['POST', 'OPTIONS'])
+@crossdomain(origin="*", methods=['POST', 'OPTIONS'], headers='Content-Type')
 #@requires_api_key
 def post():
     """Create a new user.
@@ -62,6 +65,7 @@ def post():
     
 
 @users.route('/<int:user_id>', methods=['GET'])
+@crossdomain(origin="*", methods=['GET'], headers='Content-Type')
 #@requires_api_key
 def get(user_id):
     """Get a user identified by `user_id`.

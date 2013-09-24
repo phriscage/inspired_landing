@@ -2,9 +2,10 @@
 from __future__ import absolute_import
 import sys
 import os
-sys.path.insert(0, os.path.dirname(os.path.realpath(__file__)) + '/../lib/')
-from database import Base
-from helpers.helpers import BaseExtension
+sys.path.insert(0, os.path.dirname(
+    os.path.realpath(__file__)) + '/../../../../lib/')
+from inspired_landing.lib.database import Base
+from inspired_landing.lib.helpers.helpers import BaseExtension
 #from inspired.v1.lib.videos.models import Video
 from sqlalchemy import Column, String, DateTime, Table, ForeignKey
 from sqlalchemy.dialects.mysql import INTEGER as Integer
